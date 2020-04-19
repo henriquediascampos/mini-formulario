@@ -1,0 +1,94 @@
+
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+        <div id="container" class="container">
+
+            <input placeholder="Nome" id="nome" class="item-form    input" type="text">
+            <input placeholder="Sobrenome" id="sobrenome" class="item-form  input" type="text">
+            <input placeholder="E-mail" id="email" class="item-form     input" type="email">
+            <input placeholder="Bairro" id="bairro" class="item-form    input" type="text">
+            <input placeholder="Rua" id="rua" class="item-form  input" type="text">
+            <input placeholder="Numero" id="numero" class="item-form    input" type="number" maxlength="7">
+
+            <button id="submit" onclick="submit()">Gravar</button>
+        </div>
+
+        <div>
+            <div class="busca-container">
+                <h1>Lista de Pessoas Cadastradas </h1>
+                <div class="filtro">
+                    <select name="tipo" id="tipo">
+                        <option value="nome">Nome</option>
+                        <option value="rua">Rua</option>
+                        <option value="bairro">Bairro</option>
+                    </select>
+                    <div>
+                        <input id="filtro" type="text" class="input">
+                    </div>
+                    <button id="buscar">buscar</button>
+                </div>
+            </div>
+            <table class="lista">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>E-mail</th>
+                        <th>Endereco</th>
+                    </tr>
+                </thead>
+                <tbody id="lista">
+                </tbody>
+            </table>
+        </div>
+    </body>
+
+    <script>
+        const { ipcRenderer, ipcMain } = require('electron');
+
+        function submit() {
+            ipcRenderer.send('vaiCavalo', [getParam()]);
+        };
+
+        function getParam() {
+            const list=$('.item-form');
+            let parametros={};
+            
+            Array.from(list).forEach( element => {
+                parametros[element.id]=element.value;
+            });
+
+            return parametros;
+        }
+
+        function $(selector) {
+            if (selector.indexOf('.') === 0) {
+                const sel = selector.replace('.', '');
+                return document.getElementsByClassName(sel);
+            } else if (selector.indexOf('#') === 0) {
+                const sel = selector.replace('#', '');
+                return document.getElementById(sel);
+            }
+        }
+
+        //RECEBE
+        ipcRenderer.on('lista', (e, arg) => {
+            document.getElementById('lista').innerHTML = arg;
+        });
+
+        //BUSCAR
+        $('#buscar').addEventListener('click', () => {
+            const tipo = $('#tipo');
+            const filtro = $('#filtro');
+            ipcRenderer.send('buscar', [{tipo, filtro}]);
+        })
+    </script>
+
+</html>
