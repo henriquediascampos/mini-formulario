@@ -20,7 +20,9 @@
 
             <button id="submit" onclick="submit()">Gravar</button>
         </div>
+
         <div>
+            <h1>Lista de Pessoas Cadastradas <button>buscar</button></h1>
             <table class="lista">
                 <thead>
                     <tr>
@@ -30,22 +32,13 @@
                     </tr>
                 </thead>
                 <tbody id="lista">
-                    <tr>
-                        <td>a</td>
-                        <td>b</td>
-                        <td>c</td>
-                    </tr>
-                    <tr>
-                        <td>a</td>
-                        <td>b</td>
-                        <td>c</td>
-                    </tr>
                 </tbody>
             </table>
         </div>
     </body>
 
     <script>
+        'use strics'
         const { ipcRenderer }=require('electron');
 
         function submit() {
@@ -55,18 +48,21 @@
         function getParam() {
             const list=$('.input');
             let parametros={};
+            
+            Array.from(list).forEach( element => {
+                parametros[element.id]=element.value;
+            });
 
-            for (var item of list) {
-                parametros[item.id]=item.value;
-            }
             return parametros;
         }
 
         function $(selector) {
-            if (selector.indexOf('.')) {
-                return document.getElementsByClassName(selector);
-            } else if (selector.indexOf('#')) {
-                return document.getElementById(selector);
+            if (selector.indexOf('.') === 0) {
+                const sel = selector.replace('.', '');
+                return document.getElementsByClassName(sel);
+            } else if (selector.indexOf('#') === 0) {
+                const sel = selector.replace('#', '');
+                return document.getElementById(sel);
             }
         }
 

@@ -6,12 +6,12 @@ app.whenReady().then(() => {
     const win = new BrowserWindow({
         webPreferences: {
             nodeIntegration: true,
-            devTools: true
         },
+        maximizable: true,
     });
     win.loadURL(`file://${path.join(__dirname)}/src/form.html`)
     win.webContents.openDevTools()
-
+    win.maximize()
 });
 
 function inserirItemNaLista(item) {
@@ -29,6 +29,6 @@ function enviaItem(item) {
     ipcMain.emit('testemain', [item]);
 }
 
-ipcMain.on('vaiCavalo', (e) => {
-    console.log('aeeeeeee', e);
+ipcMain.on('vaiCavalo', (e, arg) => {
+    console.log('aeeeeeee', arg);
 });
