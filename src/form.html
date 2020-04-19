@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+        <div id="container" class="container">
+            <input id="nome" class="input" type="text">
+            <input id="sobrenome" class="input" type="text">
+            <input id="email" class="input" type="text">
+            <input id="endereco" class="input" type="text">
+            <input id="rua" class="input" type="text">
+            <input id="bairro" class="input" type="text">
+            <input id="numero" class="input" type="text">
+
+            <button id="submit" onclick="submit()">Gravar</button>
+        </div>
+        <div>
+            <table class="lista">
+                <thead>
+                    <tr>
+                        <td>Nome</td>
+                        <td>E-mail</td>
+                        <td>Endereco</td>
+                    </tr>
+                </thead>
+                <tbody id="lista">
+                    <tr>
+                        <td>a</td>
+                        <td>b</td>
+                        <td>c</td>
+                    </tr>
+                    <tr>
+                        <td>a</td>
+                        <td>b</td>
+                        <td>c</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+
+    <script>
+        const { ipcRenderer }=require('electron');
+
+        function submit() {
+            ipcRenderer.send('vaiCavalo', [getParam()]);
+        };
+
+        function getParam() {
+            const list=$('.input');
+            let parametros={};
+
+            for (var item of list) {
+                parametros[item.id]=item.value;
+            }
+            return parametros;
+        }
+
+        function $(selector) {
+            if (selector.indexOf('.')) {
+                return document.getElementsByClassName(selector);
+            } else if (selector.indexOf('#')) {
+                return document.getElementById(selector);
+            }
+        }
+
+    </script>
+
+</html>
