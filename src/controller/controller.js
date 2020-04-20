@@ -11,7 +11,7 @@ function createMain() {
         maximizable: true,
     });
     win.loadURL(`file://${path.join(__dirname)}/../view/form.html`);
-    win.webContents.openDevTools();
+    // win.webContents.openDevTools();
     win.maximize();
 }
 
@@ -38,8 +38,18 @@ ipcMain.on('buscar', (event, arg) => {
 
 function gravar(pessoa) {
     const lista = buscar();
-    lista.push(pessoa)
-    jsonController.writeNewList(lista)
+    const jaTem = validaPorNome(lista, pessoa) // Deve retornar um valor Boolean (True ou False)
+    
+    if (jaTem) {
+        return;
+    } else {
+        lista.push(pessoa);
+        jsonController.writeNewList(lista)
+    }
+}
+
+function validaPorNome(lista, pessoa) {
+
 }
 
 // delete
