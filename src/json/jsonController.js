@@ -1,18 +1,17 @@
-var fs=require('fs');
+var fs = require('fs');
+
+const folder_ = './src/json/list';
+const file_ = '/list.json';
 
 function writeFile(newObject) {
-    const folder='./list'
-    const file='/list.json'
-    createFolder(folder);
-    saveOrUpdateFile(folder, file, newObject);
+    createFolder(folder_);
+    saveOrUpdateFile(folder_, file_, newObject);
 }
 
 function writeNewList(list) {
-    const folder='./list'
-    const file='/list.json'
-    createFolder(folder);
-
-    let modifiedjson=JSON.stringify(list);
+    createFolder(folder_);
+    let modifiedjson = JSON.stringify(list);
+    const path = folder_.concat(file_);
     writeJson(path, modifiedjson);
 }
 
@@ -26,7 +25,7 @@ function saveOrUpdateFile(folder, file, newObject) {
     const { json } = getObjectJsonFile(path);
 
 
-    const exists = json.filter(e => e.id==newObject.id);
+    const exists = json.filter(e => e.id == newObject.id);
 
     if (exists.length) {
         newJson = updateObjectJson(json, newObject);
@@ -37,19 +36,19 @@ function saveOrUpdateFile(folder, file, newObject) {
         return;
     }
 
-    let modifiedjson=JSON.stringify(newJson);
+    let modifiedjson = JSON.stringify(newJson);
     // modifiedjson=indentCode(modifiedjson);
 
     writeJson(path, modifiedjson);
 }
 
 function indentCode(modifiedjson) {
-    modifiedjson=modifiedjson.replace(/,/g, ',\n');
-    modifiedjson=modifiedjson.replace('[', '[\n');
-    modifiedjson=modifiedjson.replace(']', '\n]');
-    modifiedjson=modifiedjson.replace(/{/g, '    {\n');
-    modifiedjson=modifiedjson.replace(/},/g, '\n    },');
-    modifiedjson=modifiedjson.replace(/\n"/g, '\n        "');
+    modifiedjson = modifiedjson.replace(/,/g, ',\n');
+    modifiedjson = modifiedjson.replace('[', '[\n');
+    modifiedjson = modifiedjson.replace(']', '\n]');
+    modifiedjson = modifiedjson.replace(/{/g, '    {\n');
+    modifiedjson = modifiedjson.replace(/},/g, '\n    },');
+    modifiedjson = modifiedjson.replace(/\n"/g, '\n        "');
     return modifiedjson;
 }
 
@@ -61,8 +60,8 @@ function saveNewObjectJson(json, newObject) {
     } else {
         let ultimoIndex = json
             .map(e => parseInt(e.id))
-            .sort((a, b) => b-a)[0];
-        newObject.id=ultimoIndex+1;
+            .sort((a, b) => b - a)[0];
+        newObject.id = ultimoIndex + 1;
         const newJson = [...json, newObject];
         return newJson;
     }
@@ -70,17 +69,18 @@ function saveNewObjectJson(json, newObject) {
 
 function updateObjectJson(json, newObject) {
     return json.reduce((accumulator, current) => {
-        if (current.id===newObject.id) {
+        if (current.id === newObject.id) {
             if (newObject.name)
-                current.name=newObject.name;
+                current.name = newObject.name;
         }
-        return accumulator=[...accumulator, current];
+        return accumulator = [...accumulator, current];
     });
 }
 
 function getObjectJsonFile(path) {
-    const fileRead=fs.readFileSync(path);
-    const json=JSON.parse(fileRead.toString());
+    const fileRead = fs.readFileSync(path);
+    const json = JSON.parse(fileRead.toString());
+    console.log('load all!');
     return { json, fileRead };
 }
 
@@ -104,6 +104,13 @@ function createFolder(folder) {
     }
 }
 
-module.exports={
-    writeFile, writeNewList
+function buscarTodos() {
+    createFolder(folder_)
+    const path = folder_.concat(file_);
+    validatorFileExists(path);
+    const { json } = getObjectJsonFile(path);
+    return json;
+}
+module.exports = {
+    writeFile, writeNewList, buscarTodos
 };
