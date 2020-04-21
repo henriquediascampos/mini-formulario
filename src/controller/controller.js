@@ -11,30 +11,18 @@ function createMain() {
         maximizable: true,
     });
     win.loadURL(`file://${path.join(__dirname)}/../view/form.html`);
-    // win.webContents.openDevTools();
+    win.webContents.openDevTools();
     win.maximize();
 }
 
-function buscar(filtro) {
-    let lista = jsonController.buscarTodos();
-    // let pessoas = filtrar(lista, filtro);
-    return Array.from(lista);
-}
-
 //RECEBE
-ipcMain.on('vaiCavalo', (event, arg) => {
-    gravar(arg[0]);
+ipcMain.on('gravar', (event, arg) => {
+    if (arg.tipo === 'Gravar')
+        gravar(arg.lista);
+    else 
+        alterar(arg.lista)
 });
 
-ipcMain.on('buscar', (event, arg) => {
-    const list = buscar(arg[0]);
-    event.reply('lista', list)
-});
-
-//ENVIA
-// function enviaLista(item) {
-//     win.webContents.send('lista', [item]);
-// }
 
 function gravar(pessoa) {
     const lista = buscar();
@@ -52,6 +40,44 @@ function validaPorNome(lista, pessoa) {
 
 }
 
+function alterar(lista) {
+    
+}
+
+ipcMain.on('buscar', (event, arg) => {
+    const list = buscar(arg);
+    event.reply('buscar', list)
+});
+
+function buscar(filtro) {
+    let lista = jsonController.buscarTodos();
+    // let pessoas = filtrar(lista, filtro);
+    return Array.from(lista);
+}
+
 // delete
+ipcMain.on('excluir', (event, arg) => {
+    excluir(arg);
+    event.reply('excluir_retorno', arg);
+});
+
+function excluir(params) {
+    
+}
+
+ipcMain.on('carragar_dados', (event, arg) => {
+    const pessoas = buscar(arg);
+    const pessoa = pessoas.reduce((accumulated, curret) => {
+        if (arg.filtro === curret.nome) {
+            accumulated = curret;
+        } 
+
+        return accumulated;
+    }, {});
+
+    event.reply('carragar_dados', pessoa);
+});
+
+
 
 module.exports = { createMain }

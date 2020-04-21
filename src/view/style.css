@@ -21,6 +21,10 @@ html, body {
     margin-bottom: 8px;
 }
 
+*:not(input) {
+    user-select: none;
+}
+
 .input {
     border: 0px;
     border-bottom: 1px solid;
@@ -33,19 +37,19 @@ html, body {
     color: rgb(219, 219, 219);
 }
 
-#submit:hover, #buscar:hover {
+#submit:hover, #buscar:hover, #resetar:hover {
     background-color: #da8404a9;
     user-select: none;
     outline: none;
 }
 
-#submit:active, #buscar:active {
+#submit:active, #buscar:active, #resetar:active {
     background-color: #c7c6c694;
     user-select: none;
     outline: none;
 }
 
-#submit, #buscar {
+#submit, #buscar, #resetar {
     width: 150px;
     height: 35px;
     border: 1px solid black;
@@ -53,6 +57,7 @@ html, body {
     color: #535353;
     background-color: #da8404;
     cursor: pointer;
+    user-select: none;
 }
 
 .busca-container {
@@ -91,11 +96,15 @@ html, body {
 }
 
 .lista {
-    width: 100%;
+    width: 90%;
+}
+
+.lista * {
+    user-select: none;
 }
 
 .lista thead {
-    background-color: #c1c1c1;
+    background-color: #c1c1c1;;
 }
 
 .lista tbody {
@@ -105,7 +114,7 @@ html, body {
 .lista > thead > tr th {
     border-right: 1px solid;
     border-bottom: 1px solid;
-    width: 30%;
+    width: 20%;
     text-align: center;
     height: 25px;
     margin: 0px;
@@ -116,8 +125,18 @@ html, body {
 .lista > tbody > tr td {
     border-right: 1px solid;
     border-bottom: 1px solid rgba(92, 92, 92, 0.603);
-    width: 30%;
     height: 10px;
     text-align: center;
 }
 
+.lista > thead > tr th#excluir {
+    width: 5%;
+}
+
+.resetar {
+    display: flex;
+    width: 90%;
+    flex-direction: row-reverse;
+    user-select: none;
+    outline: none;
+}

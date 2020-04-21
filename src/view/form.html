@@ -8,6 +8,7 @@
 </head>
 
 <body>
+    <div class="resetar"> <button id="resetar">RESETAR LISTA</button></div>
     <div id="container" class="container">
 
         <input placeholder="Nome" id="nome" class="item-form    input" type="text">
@@ -17,10 +18,10 @@
         <input placeholder="Rua" id="rua" class="item-form  input" type="text">
         <input placeholder="Numero" id="numero" class="item-form    input" type="number" maxlength="7">
 
-        <button id="submit" onclick="submit()">Gravar</button>
+        <button id="submit">Gravar</button>
     </div>
 
-    <div>
+    <div class="container">
         <div class="busca-container">
             <h1>Lista de Pessoas Cadastradas </h1>
             <div class="filtro">
@@ -39,8 +40,10 @@
             <thead>
                 <tr>
                     <th>Nome</th>
+                    <th>Sobrenome</th>
                     <th>E-mail</th>
                     <th>Endereco</th>
+                    <th id="excluir">excluir</th>
                 </tr>
             </thead>
             <tbody id="lista">
@@ -50,85 +53,7 @@
 </body>
 
 <script>
-    const { ipcRenderer, ipcMain } = require('electron');
-
-    function submit() {
-        ipcRenderer.send('vaiCavalo', [getParam()]);
-    };
-
-    function getParam() {
-        const list = $('.item-form');
-        let parametros = {};
-
-        Array.from(list).forEach(element => {
-            parametros[element.id] = element.value;
-        });
-
-        return parametros;
-    }
-
-    function $(selector) {
-        if (selector.indexOf('.') === 0) {
-            const sel = selector.replace('.', '');
-            return document.getElementsByClassName(sel);
-        } else if (selector.indexOf('#') === 0) {
-            const sel = selector.replace('#', '');
-            return document.getElementById(sel);
-        }
-    }
-
-    //RECEBE
-    ipcRenderer.on('lista', (e, arg) => {
-        const itens = monstaListaParaEnvio(arg);
-        document.getElementById('lista').innerHTML = '';
-        itens.forEach(element => {
-            console.log(element)
-            document.getElementById('lista').appendChild(element);
-        });
-    });
-
-    //BUSCAR
-    $('#buscar').addEventListener('click', () => {
-        const tipo = $('#tipo');
-        const filtro = $('#filtro');
-        ipcRenderer.send('buscar', [{ tipo, filtro }]);
-    });
-
-
-    function inserirItemNaLista(item) {
-        const tr = document.createElement('tr');
-        const td1 = createElement('td');
-        td1.appendChild(createTextNode(`${item.nome} ${item.sobrenome}`))
-        
-        const td2 = createElement('td');
-        td2.appendChild(createTextNode(`${item.email}`));
-
-        const td3 = createElement('td');
-        td3.appendChild(createTextNode(`${item.bairro} - ${item.rua} - ${item.numero}°`));
-
-        tr.appendChild(td1);
-        tr.appendChild(td2);
-        tr.appendChild(td3);
-        
-        return tr;
-    }
-
-    function createElement(tag) {
-        return document.createElement(tag);
-    }
-
-    function createTextNode(text) {
-        return document.createTextNode(text);
-    }
-
-    function monstaListaParaEnvio(pessoas) {
-        const lista = []
-        pessoas.forEach(pessoa => {
-            lista.push(inserirItemNaLista(pessoa));
-        });
-
-        return lista;
-    }
+   require('./form.js')
 </script>
 
 </html>
