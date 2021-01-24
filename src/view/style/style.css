@@ -1,0 +1,64 @@
+@import url("./flex.css");
+@import url("./theme.css");
+
+div {
+  box-sizing: border-box;
+}
+
+html, body {
+    font: 14px "Century Gothic", Futura, sans-serif;
+    height: 100%;
+    width: 100%;
+    border: 0px;
+    padding: 0px;
+    margin: 0;
+}
+
+
+.board-row:after {
+  clear: both;
+  content: "";
+  display: table;
+}
+
+.container {
+  padding: 5px;
+}
+
+.no-select {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+.no-select:focus {
+  outline: none;
+}
+
+.hidden {
+  display: none;
+}
+
+.error {
+  color: red !important;
+}
+
+.error-border {
+  border-color: red !important;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.height-auto {
+  min-height: auto;
+}
+
+.width-auto {
+  min-width: auto;
+}

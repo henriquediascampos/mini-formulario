@@ -10,7 +10,7 @@ function createMain() {
         },
         maximizable: true,
     });
-    win.loadURL(`file://${path.join(__dirname)}/../view/form.html`);
+    win.loadURL(`file://${path.join(__dirname)}/../view/index.html`);
     win.webContents.openDevTools();
     win.maximize();
 }
