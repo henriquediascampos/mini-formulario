@@ -1,6 +1,7 @@
 const { BrowserWindow, ipcMain } = require('electron')
 const path = require('path');
 const jsonController = require('../json/jsonController')
+require('./tratamento-dados-controller')
 
 let win = null;
 function createMain() {
@@ -17,9 +18,11 @@ function createMain() {
 
 //RECEBE
 ipcMain.on('gravar', (event, arg) => {
+    console.log('gravar');
+
     if (arg.tipo === 'Gravar')
         gravar(arg.lista);
-    else 
+    else
         alterar(arg.lista)
 });
 
@@ -27,7 +30,7 @@ ipcMain.on('gravar', (event, arg) => {
 function gravar(pessoa) {
     const lista = buscar();
     const jaTem = validaPorNome(lista, pessoa) // Deve retornar um valor Boolean (True ou False)
-    
+
     if (jaTem) {
         return;
     } else {
@@ -41,7 +44,7 @@ function validaPorNome(lista, pessoa) {
 }
 
 function alterar(lista) {
-    
+
 }
 
 ipcMain.on('buscar', (event, arg) => {
@@ -62,7 +65,7 @@ ipcMain.on('excluir', (event, arg) => {
 });
 
 function excluir(params) {
-    
+
 }
 
 ipcMain.on('carragar_dados', (event, arg) => {
@@ -70,7 +73,7 @@ ipcMain.on('carragar_dados', (event, arg) => {
     const pessoa = pessoas.reduce((accumulated, curret) => {
         if (arg.filtro === curret.nome) {
             accumulated = curret;
-        } 
+        }
 
         return accumulated;
     }, {});

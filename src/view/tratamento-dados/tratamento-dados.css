@@ -1,0 +1,52 @@
+.voltar {
+    max-height: auto;
+}
+
+.input-default {
+    border: 0;
+    border-bottom: 1px solid #757575;
+    outline: none;
+    height: 22px;
+    background: none;
+    color: white;
+    font-size: 12pt;
+}
+
+.input-default::placeholder {
+    color: rgb(156, 160, 170);
+    text-shadow: 15px #ff0000;
+}
+
+fieldset.form {
+    border-radius: 4px;
+    padding: 12px;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+fieldset > legend{
+    margin: 0 5px;
+}
+
+fieldset.form  .flex.column.margin-default > *:not(:last-child) {
+    margin-bottom: 17px;
+}
+
+.button-padrao {
+    height: 32px;
+    width: 98px;
+    border-radius: 4px;
+    font-size: 15px;
+    cursor: pointer;
+    outline: none;
+    border: .3px black solid;
+    user-select: none;
+    background-color: rgb(198, 157, 228);
+    font-weight: 700;
+    color: rgb(102, 3, 135);
+}
+
+.button-padrao:active {
+    background-color: rgb(226, 192, 250);
+    color: rgb(72, 1, 95);
+}

@@ -1,0 +1,29 @@
+@import url("./icon-color.css");
+@import url("./icon-svg.css");
+
+i.icon {
+    font-size  : 0;
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow   : hidden;
+}
+
+i.icon::before {
+    content         : "";
+    display         : block;
+    background-color: black;
+    float           : left;
+    width           : 18px;
+    height          : 18px;
+    cursor          : pointer;
+}
+
+i.icon.dp24:before {
+    width  : 24px;
+    height : 24px;
+}
+
+i.icon.dp36:before {
+    width : 36px;
+    height: 36px;
+}

@@ -1,5 +1,5 @@
 const { ipcRenderer } = require('electron');
-const { include }  = require('../util/include');
+
 
 
 // //GRAVAR
@@ -7,9 +7,13 @@ const btn = document.getElementById('iniciar-estudo')
 
 btn.addEventListener('click', (e) => {
     e.currentTarget.classList.add('animation-do-poder');
-    // ipcRenderer.send('gravar', {'lista': getParam(), 'tipo': document.getElementById('submit').innerText} );
-    // document.getElementById('submit').innerText = 'Gravar';
+
 });
+
+// document.getElementById('nome').addEventListener('click', (e) => {
+//     ipcRenderer.send('gravar', {'lista': getParam(), 'tipo': document.getElementById('nome').innerText} );
+//     document.getElementById('submit').innerText = 'Gravar';
+// });
 
 // function getParam() {
 //     const list = $('.item-form');

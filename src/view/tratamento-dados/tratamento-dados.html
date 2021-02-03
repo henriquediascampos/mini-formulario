@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="tratamento-dados.css">
+    <title>Estudo Fabísticos (tratamento de dados)</title>
+</head>
+
+<body class="body-not-home prymary flex column">
+    <div class="header">
+        <a class="voltar" href="../index.html">
+            <i class="icon dp36 icon-back"></i>
+        </a>
+    </div>
+    <div class="content flex column margin-default full-width">
+        <fieldset class="form">
+            <legend class="bold">Identificação</legend>
+            <div class="flex column margin-default">
+                <span id="id" class="hidden"></span>
+                <input id="nome" class="input-default field-form" type="text" placeholder="Nome">
+                <input id="sobrenome" class="input-default field-form" type="text" placeholder="Sobrenome">
+                <input id="cpf" class="input-default field-form" type="text" placeholder="CPF">
+                <input id="data-nascimento" class="input-default field-form" type="text" placeholder="Data de nascimento">
+                <input id="nome-mae" class="input-default field-form" type="text" placeholder="Nome da mãe">
+            </div>
+        </fieldset>
+
+        <fieldset class="form">
+            <legend class="bold">Contato</legend>
+            <div class="flex column margin-default">
+                <input id="email" class="input-default field-form" type="text" placeholder="e-mail">
+                <input id="fone" class="input-default field-form" type="text" placeholder="Telefone">
+                <input id="endereco" class="input-default field-form" type="text" placeholder="Endereço">
+                <input id="pais" class="input-default field-form" type="text" placeholder="pais">
+                <input id="uf" class="input-default field-form" type="text" placeholder="UF">
+                <input id="cidade" class="input-default field-form" type="text" placeholder="cidade">
+                <input id="bairro" class="input-default field-form" type="text" placeholder="bairro">
+                <input id="numero" class="input-default field-form" type="text" placeholder="numero">
+            </div>
+        </fieldset>
+
+        <div class="flex row flex-end">
+            <button id="submit-form" class="button-padrao primary">Submit</button>
+        </div>
+
+    </div>
+</body>
+<script>
+    require('./tratamento-dados.js')
+</script>
+
+</html>

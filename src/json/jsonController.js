@@ -3,12 +3,12 @@ var fs = require('fs');
 const folder_ = './src/json/list';
 const file_ = '/list.json';
 
-function writeFile(newObject) {
+function save(newObject, module) {
     createFolder(folder_);
-    saveOrUpdateFile(folder_, file_, newObject);
+    saveOrUpdate(folder_, file_, newObject);
 }
 
-function writeNewList(list) {
+function saveList(list, module) {
     createFolder(folder_);
     let modifiedjson = JSON.stringify(list);
     const path = folder_.concat(file_);
@@ -16,15 +16,11 @@ function writeNewList(list) {
 }
 
 
-function saveOrUpdateFile(folder, file, newObject) {
+function saveOrUpdate(folder, file, newObject) {
     const path = folder.concat(file);
     let newJson;
-
     validatorFileExists(path);
-
     const { json } = getObjectJsonFile(path);
-
-
     const exists = json.filter(e => e.id == newObject.id);
 
     if (exists.length) {
@@ -53,18 +49,17 @@ function indentCode(modifiedjson) {
 }
 
 function saveNewObjectJson(json, newObject) {
-    const existsMesmoName = json.filter(e => e.name == newObject.name).length;
-    if (existsMesmoName) {
-        console.error(`there is already an object registered with that name.`);
-        return;
-    } else {
-        let ultimoIndex = json
-            .map(e => parseInt(e.id))
-            .sort((a, b) => b - a)[0];
-        newObject.id = ultimoIndex + 1;
-        const newJson = [...json, newObject];
-        return newJson;
-    }
+    const existsMesmoName = json.filter(e => e.name === newObject.nome).length;
+    // if (existsMesmoName) {
+    //     console.error(`there is already an object registered with that name.`);
+    //     return;
+    // } else {
+    let ultimoIndex = json
+        .map(e => parseInt(e.id))
+        .sort((a, b) => b - a)[0];
+    newObject.id = (ultimoIndex || 0) + 1;
+    const newJson = [...json, newObject];
+    return newJson;
 }
 
 function updateObjectJson(json, newObject) {
@@ -105,12 +100,12 @@ function createFolder(folder) {
 }
 
 function buscarTodos() {
-    createFolder(folder_)
+    createFolder(folder_);
     const path = folder_.concat(file_);
     validatorFileExists(path);
     const { json } = getObjectJsonFile(path);
     return json;
 }
 module.exports = {
-    writeFile, writeNewList, buscarTodos
+    save, saveList, buscarTodos
 };

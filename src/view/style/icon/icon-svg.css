@@ -1,0 +1,81 @@
+/* delete */
+.icon-delete::before {
+    -webkit-mask-image: url(../../../../assets/icon/dp18/delete.svg);
+    mask-image        : url(../../../../assets/icon/dp18/delete.svg);
+}
+
+.dp24.icon-delete::before {
+    -webkit-mask-image: url(../../../../assets/icon/dp24/delete.svg);
+    mask-image        : url(../../../../assets/icon/dp24/delete.svg);
+}
+
+.dp36.icon-delete::before {
+    -webkit-mask-image: url(../../../../assets/icon/dp36/delete.svg);
+    mask-image        : url(../../../../assets/icon/dp36/delete.svg);
+}
+
+/* menu */
+.icon-menu::before {
+    -webkit-mask-image: url(../../../../assets/icon/dp18/menu.svg);
+    mask-image        : url(../../../../assets/icon/dp18/menu.svg);
+}
+
+.dp24.icon-menu::before {
+    -webkit-mask-image: url(../../../../assets/icon/dp24/menu.svg);
+    mask-image        : url(../../../../assets/icon/dp24/menu.svg);
+}
+
+.dp36.icon-menu::before {
+    -webkit-mask-image: url(../../../../assets/icon/dp36/menu.svg);
+    mask-image        : url(../../../../assets/icon/dp36/menu.svg);
+}
+
+
+/* close */
+.icon-close::before {
+    -webkit-mask-image: url(../../../../assets/icon/dp18/close.svg);
+    mask-image        : url(../../../../assets/icon/dp18/close.svg);
+}
+
+.dp24.icon-close::before {
+    -webkit-mask-image: url(../../../../assets/icon/dp24/close.svg);
+    mask-image        : url(../../../../assets/icon/dp24/close.svg);
+}
+
+.dp36.icon-close::before {
+    -webkit-mask-image: url(../../../../assets/icon/dp36/close.svg);
+    mask-image        : url(../../../../assets/icon/dp36/close.svg);
+}
+
+/* back */
+.icon-back::before {
+    -webkit-mask-image: url(../../../../assets/icon/dp18/back.svg);
+    mask-image        : url(../../../../assets/icon/dp18/back.svg);
+}
+
+.dp24.icon-back::before {
+    -webkit-mask-image: url(../../../../assets/icon/dp24/back.svg);
+    mask-image        : url(../../../../assets/icon/dp24/back.svg);
+}
+
+.dp36.icon-back::before {
+    -webkit-mask-image: url(../../../../assets/icon/dp36/back.svg);
+    mask-image        : url(../../../../assets/icon/dp36/back.svg);
+}
+
+
+/* filter */
+.icon-filter::before {
+    -webkit-mask-image: url(../../../../assets/icon/dp18/filter.svg);
+    mask-image        : url(../../../../assets/icon/dp18/filter.svg);
+}
+
+.dp24.icon-filter::before {
+    -webkit-mask-image: url(../../../../assets/icon/dp24/filter.svg);
+    mask-image        : url(../../../../assets/icon/dp24/filter.svg);
+}
+
+.dp36.icon-filter::before {
+    -webkit-mask-image: url(../../../../assets/icon/dp36/filter.svg);
+    mask-image        : url(../../../../assets/icon/dp36/filter.svg);
+}
